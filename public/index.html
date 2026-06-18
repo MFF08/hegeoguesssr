@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Helmstedt GeoGuessr — Advanced</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-sA+4j1rG1yyPp2ykYV8Qx6QX3Y4v77QWQ8R8Z8KQ0E0="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <h1>Helmstedt GeoGuessr — Advanced</h1>
+        <p class="sub">5 Runden • Mapillary optional • Highscore lokal</p>
+      </div>
+      <div class="header-controls">
+        <button id="btn-new-game" class="primary">Neues Spiel</button>
+        <button id="btn-new-round" disabled>Neue Runde</button>
+        <button id="btn-reveal" disabled>Auflösen</button>
+        <button id="btn-submit" disabled>Rate abschicken</button>
+      </div>
+    </header>
+
+    <main>
+      <aside class="sidebar">
+        <div class="panel">
+          <h2>Status</h2>
+          <div class="status-row">
+            <span>Runde:</span><strong id="round-counter">0 / 5</strong>
+          </div>
+          <div class="status-row">
+            <span>Punkte:</span><strong id="score-status">0</strong>
+          </div>
+          <div class="status-row">
+            <span>Timer:</span><strong id="timer-status">—</strong>
+          </div>
+          <div class="status-row">
+            <span>Hinweis:</span><em id="hint-status">—</em>
+          </div>
+          <div class="panel-foot">
+            <button id="btn-clear-highscore" class="danger small">Highscore löschen</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Highscore (lokal)</h2>
+          <ol id="highscore-list" class="highscore"></ol>
+        </div>
+      </aside>
+
+      <section class="content">
+        <div class="viewer-map">
+          <div class="viewer-panel">
+            <div class="panel-head"><h3>Street‑View / Bild (Mapillary)</h3></div>
+            <div id="viewer">
+              <div class="placeholder">
+                <p>Mit MAPILLARY_TOKEN zeigt dieser Bereich ein Foto aus der Nähe des Ziels.</p>
+                <p class="hint">Trage den Token in <code>.env</code> ein und starte den Server neu.</p>
+              </div>
+              <img id="viewer-img" alt="Mapillary Foto" />
+            </div>
+          </div>
+
+          <div class="map-panel">
+            <div class="panel-head"><h3>Karte (OpenStreetMap)</h3></div>
+            <div id="map"></div>
+            <div class="help">
+              - Klicke auf die Karte, um deinen Tipp zu setzen<br />
+              - „Rate abschicken“ bewertet deinen Tipp<br />
+              - „Auflösen“ zeigt die wirkliche Position
+            </div>
+          </div>
+        </div>
+
+        <div class="result" id="result-text"></div>
+      </section>
+    </main>
+
+    <div id="overlay" class="overlay hidden">
+      <div class="modal">
+        <h2 id="overlay-title">Spielende</h2>
+        <p id="overlay-body">Zusammenfassung...</p>
+        <div class="modal-actions">
+          <button id="btn-overlay-close" class="primary">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <small>Prototyp. Kartendaten: © OpenStreetMap‑Mitwirkende. Fotos via Mapillary (optional).</small>
+    </footer>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-o9N1j7kGStbE7n9G6U02zszgdWzxgXQv1dr3Hq+4b24="
+      crossorigin=""
+    ></script>
+    <script src="app.js"></script>
+  </body>
+</html>
